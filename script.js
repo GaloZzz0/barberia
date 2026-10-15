@@ -14,7 +14,7 @@ if (form) {
         const servicio = form.querySelector('select[name="servicio"]')?.value || 'servicio';
         const mensaje = form.querySelector('textarea[name="mensaje"]')?.value?.trim() || 'Quiero reservar una cita';
 
-        const whatsappUrl = `https://wa.me/525664444033?text=${encodeURIComponent(
+        const whatsappUrl = `https://wa.me/522205427583?text=${encodeURIComponent(
             `Hola MTS Studio, mi nombre es ${nombre}. Me interesa el servicio de ${servicio}. ${mensaje}`
         )}`;
 
