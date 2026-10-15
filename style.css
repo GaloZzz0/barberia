@@ -248,6 +248,7 @@ textarea {
 
 .badge {
     position: absolute;
+    z-index: 1;
     top: 22px;
     right: 22px;
     display: inline-block;
@@ -261,48 +262,21 @@ textarea {
     text-transform: uppercase;
 }
 
-.portrait {
+.hero-photo {
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.5)),
-        radial-gradient(circle at 50% 25%, rgba(212, 175, 117, 0.26), transparent 30%),
-        linear-gradient(135deg, #3f3f3f 0%, #1c1c1c 45%, #090909 100%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
 }
 
-.portrait::before,
-.portrait::after {
+.visual-card::after {
     content: "";
     position: absolute;
-    inset: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 50%;
-}
-
-.portrait::before {
-    bottom: 0;
-    width: 320px;
-    height: 360px;
-    background: linear-gradient(180deg, #1f1f1f, #090909);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
-}
-
-.portrait::after {
-    bottom: 200px;
-    width: 220px;
-    height: 220px;
-    background: linear-gradient(180deg, #efe0c4 0%, #d7b88d 100%);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-}
-
-.portrait-glow {
-    position: absolute;
-    inset: 64px 110px auto 110px;
-    height: 170px;
-    border-radius: 50% 50% 40% 40%;
-    background: rgba(15, 15, 15, 0.9);
-    box-shadow: inset 0 -18px 0 rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04);
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), transparent 35%, rgba(0, 0, 0, 0.32));
+    pointer-events: none;
 }
 
 .floating-card {
@@ -523,7 +497,6 @@ section {
 
 .photo {
     position: relative;
-    aspect-ratio: 4 / 5;
     border-radius: 22px;
     border: 1px solid var(--line);
     overflow: hidden;
@@ -532,9 +505,9 @@ section {
 }
 
 .photo img {
+    display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     transition: transform 0.35s ease;
 }
 
@@ -708,6 +681,166 @@ section {
     font-size: 0.92rem;
 }
 
+.booking-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.booking-picker {
+    display: grid;
+    align-content: start;
+    gap: 0.55rem;
+    min-width: 0;
+}
+
+.booking-field-label {
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.optional-field {
+    color: var(--muted-strong);
+    font-size: 0.82em;
+}
+
+.picker-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+    width: 100%;
+    min-height: 50px;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.picker-trigger:hover,
+.picker-trigger[aria-expanded="true"] {
+    border-color: var(--accent);
+    background: rgba(212, 175, 117, 0.06);
+}
+
+.picker-trigger:focus-visible,
+.calendar-day:focus-visible,
+.time-slot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.picker-trigger-icon {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.date-picker-calendar {
+    padding: 0.75rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 16px;
+    background: #171717;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.35);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.25rem;
+}
+
+.calendar-weekday,
+.calendar-day-spacer,
+.calendar-day {
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    aspect-ratio: 1;
+}
+
+.calendar-weekday {
+    color: var(--muted-strong);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.calendar-day {
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.calendar-day:not(:disabled):hover {
+    border-color: rgba(212, 175, 117, 0.5);
+    background: rgba(212, 175, 117, 0.1);
+    color: var(--accent);
+}
+
+.calendar-day[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #111;
+    font-weight: 700;
+}
+
+.calendar-day:disabled {
+    color: #575757;
+    cursor: not-allowed;
+}
+
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+    max-height: 184px;
+    overflow-y: auto;
+    padding: 1px 3px 1px 1px;
+    scrollbar-color: var(--muted-strong) transparent;
+    scrollbar-width: thin;
+}
+
+.time-slot {
+    min-height: 36px;
+    padding: 0.35rem 0.2rem;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--muted);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.time-slot:hover {
+    border-color: rgba(212, 175, 117, 0.5);
+    color: var(--accent);
+}
+
+.time-slot[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #111;
+    font-weight: 700;
+}
+
+.booking-field-error {
+    color: #f1a6a6;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+[hidden] {
+    display: none !important;
+}
+
 .booking-form input,
 .booking-form select,
 .booking-form textarea {
@@ -730,6 +863,10 @@ section {
     color: var(--text);
 }
 
+.booking-form input[type="hidden"] {
+    display: none;
+}
+
 .booking-form input:focus,
 .booking-form select:focus,
 .booking-form textarea:focus {
@@ -740,6 +877,12 @@ section {
 .booking-form textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+.booking-note {
+    color: var(--muted-strong);
+    font-size: 0.82rem;
+    line-height: 1.5;
 }
 
 .site-footer {
@@ -823,6 +966,10 @@ section {
         grid-template-columns: 1fr;
     }
 
+    .booking-form-row {
+        grid-template-columns: 1fr;
+    }
+
     .card-top {
         left: 10px;
     }
@@ -833,16 +980,5 @@ section {
 
     .visual-card {
         height: 420px;
-    }
-
-    .portrait::before {
-        width: 260px;
-        height: 300px;
-    }
-
-    .portrait::after {
-        bottom: 160px;
-        width: 180px;
-        height: 180px;
     }
 }

@@ -43,10 +43,8 @@
 
                 <div class="hero-visual" aria-label="Vista de una barbería premium">
                     <div class="visual-card card-main">
-                        <span class="badge">Premium</span>
-                        <div class="portrait">
-                            <div class="portrait-glow"></div>
-                        </div>
+                        <span class="badge">El barbero</span>
+                        <img class="hero-photo" src="assets/gallery/dueno-barberia.jpg" alt="Dueño y barbero de MTS Studio en su barbería" width="694" height="700">
                     </div>
                     <div class="floating-card card-top">
                         <span>Servicio</span>
@@ -301,23 +299,51 @@
                         <p>Completa tus datos y continúa por WhatsApp.</p>
                     </div>
                     <label>
-                        Nombre
-                        <input type="text" name="nombre" placeholder="Tu nombre" aria-label="Nombre">
+                        Nombre completo
+                        <input type="text" name="nombre" placeholder="¿Cómo te llamas?" autocomplete="name" required>
                     </label>
                     <label>
                         Servicio
-                        <select name="servicio" aria-label="Servicio">
+                        <select name="servicio" required>
                             <option value="">Selecciona un servicio</option>
-                            <option>Corte de cabello</option>
-                            <option>Arreglo de barba</option>
-                            <option>Corte + barba</option>
-                            <option>Afeitado clásico</option>
+                            <option value="Corte — $300">Corte — $300</option>
+                            <option value="Corte en capas — $400">Corte en capas — $400</option>
+                            <option value="Corte + barba — $500">Corte + barba — $500</option>
+                            <option value="Corte + barba italiana — $600">Corte + barba italiana — $600</option>
+                            <option value="Luxury Service — $900">Luxury Service — $900</option>
+                            <option value="Mascarilla de exfoliación — $200">Mascarilla de exfoliación — $200</option>
+                            <option value="Terapia de muñecas — $200">Terapia de muñecas — $200</option>
                         </select>
                     </label>
                     <label>
-                        Mensaje
-                        <textarea name="mensaje" rows="4" placeholder="Cuéntanos qué te gustaría"></textarea>
+                        <span>Teléfono de contacto <span class="optional-field">(opcional)</span></span>
+                        <input type="tel" name="telefono" placeholder="Tu número para contactarte" autocomplete="tel">
                     </label>
+                    <div class="booking-form-row">
+                        <div class="booking-picker">
+                            <span class="booking-field-label">Fecha preferida</span>
+                            <input type="hidden" name="fecha">
+                            <button class="picker-trigger" type="button" data-date-trigger aria-expanded="false" aria-controls="date-picker-calendar">
+                                <span data-selected-date>Selecciona una fecha</span>
+                                <span class="picker-trigger-icon" aria-hidden="true">▦</span>
+                            </button>
+                            <div class="date-picker-calendar" id="date-picker-calendar" role="group" aria-label="Días disponibles" hidden>
+                                <div class="calendar-grid" data-calendar-grid></div>
+                            </div>
+                            <p class="booking-field-error" data-date-error role="alert" hidden>Selecciona un día disponible para continuar.</p>
+                        </div>
+                        <div class="booking-picker">
+                            <span class="booking-field-label">Hora preferida</span>
+                            <input type="hidden" name="hora">
+                            <div class="time-slots" data-time-slots aria-label="Horarios disponibles"></div>
+                            <p class="booking-field-error" data-time-error role="alert" hidden>Selecciona una hora disponible para continuar.</p>
+                        </div>
+                    </div>
+                    <label>
+                        <span>Notas para tu cita <span class="optional-field">(opcional)</span></span>
+                        <textarea name="mensaje" rows="3" placeholder="Cuéntanos algún detalle o estilo que tengas en mente"></textarea>
+                    </label>
+                    <p class="booking-note">Horario: martes a domingo, de 10:00 a. m. a 6:00 p. m. La fecha y hora quedan sujetas a confirmación por WhatsApp.</p>
                     <button type="submit" class="btn btn-primary">Solicitar cita</button>
                 </form>
             </div>
